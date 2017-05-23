@@ -2,8 +2,6 @@
 
 namespace common\modules\news\models;
 
-use yii\helpers\ArrayHelper;
-
 
 /**
  * This is the model class for table "news".
@@ -54,6 +52,7 @@ class News extends \yii\db\ActiveRecord
             'title' => 'Название',
             'preview' => 'Краткое описание',
             'content' => 'Текст новости',
+            'date' => 'Дата',
         ];
     }
 
@@ -63,6 +62,15 @@ class News extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getAvailableYears()
+    {
+        $years = News::find()->select('YEAR(DATE(`date`))')->distinct()->asArray()->column();
+        return array_combine($years,$years);
     }
 
     public function afterFind()

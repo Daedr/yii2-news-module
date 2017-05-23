@@ -37,13 +37,13 @@ class NewsController extends Controller
     {
         $modelSearch = new NewsSearch();
         $modelCategory = new Category();
-        $modelYear = new Years();
+        $modelNews = new News();
 
 
         return $this->render('index', [
             'dataProvider' => $modelSearch->search(Yii::$app->request->get()),
             'modelCategory' => $modelCategory,
-            'modelYear' => $modelYear,
+            'modelNews' => $modelNews,
         ]);
     }
 

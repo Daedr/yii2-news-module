@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 /* @var yii\data\ActiveDataProvider $dataProvider */
 /* @var \common\modules\news\models\Category $modelCategory */
-/* @var \common\modules\news\models\Years $yearCategory */
+/* @var \common\modules\news\models\News $modelNews */
 
 
 use yii\helpers\ArrayHelper;
@@ -38,30 +38,37 @@ $this->params['breadcrumbs'][] = $this->title;
         })"
     ); ?>
 
-    <?php $form = ActiveForm::begin([
-        'enableClientValidation' => false,
-        'options' => [
-            'id'     => 'filter-form',
-            'action' => ['index'],
-            'method' => 'get',
-        ]
-    ]); ?>
-    <?php echo $form
-        ->field($modelCategory, 'name')
-        ->dropDownList(
-            ArrayHelper::map(Category::find()->asArray()->all(),'id','name'),
-            ['id'=>'category', 'prompt'=>'Все']
-        )
-    ?>
+    <div class="row">
+        <?php $form = ActiveForm::begin([
+            'enableClientValidation' => false,
+            'options' => [
+                'id'     => 'filter-form',
+                'action' => ['index'],
+                'method' => 'get',
+            ]
+        ]); ?>
+        <div class="col-md-3">
+            <?php echo $form
+                ->field($modelCategory, 'name')
+                ->dropDownList(
+                    ArrayHelper::map(Category::find()->asArray()->all(),'id','name'),
+                    ['id'=>'category', 'prompt'=>'Все']
+                )
+            ?>
+        </div>
 
-    <?php echo $form
-        ->field($modelYear, 'id')
-        ->dropDownList(
-            $modelYear->getYearArray(),
-            ['id'=>'year', 'prompt'=>'Все']
-        )
-    ?>
-    <?php ActiveForm::end(); ?>
+        <div class="col-md-3">
+            <?php echo $form
+                ->field($modelNews, 'date')
+                ->dropDownList(
+                    $modelNews->getAvailableYears(),
+                    ['id'=>'year', 'prompt'=>'Все']
+                )
+            ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+    </div>
 
     <?php Pjax::begin(); ?>
 

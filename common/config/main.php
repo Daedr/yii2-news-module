@@ -14,6 +14,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'news' => 'news/news/index',
             ],
         ],
     ],

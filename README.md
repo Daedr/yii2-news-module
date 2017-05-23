@@ -1,4 +1,4 @@
-##Test task
+## Test task
 
 - Модуль News находится в common/modules/news
 
@@ -14,3 +14,12 @@
         ],
     ],
 ```
+- Frontend
+
+    localhost/frontend/web/news
+    
+- Backend
+
+    localhost/backend/web
+    
+- Login: admin, pass: 111111
