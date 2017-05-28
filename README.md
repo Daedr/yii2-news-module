@@ -5,7 +5,11 @@
 - Применить миграции 
 
     `yii migrate --migrationPath=@common/modules/news/migrations`
+    
+- Загрузить тестовые данные
 
+    `php yii fixture/load '*'`
+    
 - Подключить модуль в common/config/main.php
 ```
     'modules' => [

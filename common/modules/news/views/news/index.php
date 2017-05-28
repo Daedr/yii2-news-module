@@ -51,8 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php echo $form
                 ->field($modelCategory, 'name')
                 ->dropDownList(
-                    ArrayHelper::map(Category::find()->asArray()->all(),'id','name'),
-                    ['id'=>'category', 'prompt'=>'Все']
+                    Category::find()->select(['name', 'id'])->indexBy('id')->column(),
+                    ['id'=>'category','prompt'=>'Все']
                 )
             ?>
         </div>

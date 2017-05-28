@@ -70,6 +70,7 @@ class News extends \yii\db\ActiveRecord
     public function getAvailableYears()
     {
         $years = News::find()->select('YEAR(DATE(`date`))')->distinct()->asArray()->column();
+        arsort($years);
         return array_combine($years,$years);
     }
 
